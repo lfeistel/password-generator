@@ -11,6 +11,20 @@ function generatePassword() {
       window.alert("Please enter a valid password length.");
     }
   }
+
+  while (characterSet.length == 0) {
+    if (window.confirm("Include lowercase letters?")) characterSet += "abcdefghijklmnopqrstuvwxyz";
+    if (window.confirm("Include uppercase letters?")) characterSet += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if (window.confirm("Include numeric characters?")) characterSet += "0123456789";
+    if (window.confirm("Include special characters?")) characterSet += " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+    if (characterSet.length == 0) window.alert("You must select at least on character type.");
+  }
+
+  for (var i = 0; i < passwordLength; i++) {
+    password += characterSet[Math.floor(Math.random() * characterSet.length)];
+  }
+
+  return password;
 }
 
 // Get references to the #generate element
